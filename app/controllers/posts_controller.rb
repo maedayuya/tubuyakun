@@ -13,6 +13,11 @@ class PostsController < ApplicationController
   end
 
   def callback
+     puts params[:events][0][:message][:text]
+
+     post = Post.new
+     post.title = params[:events][0][:message][:text]
+     post.save
     body = request.body.read
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
